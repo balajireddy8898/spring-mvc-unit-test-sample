@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
+import static org.springframework.test.web.ModelAndViewAssert.assertModelAttributeValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -24,6 +25,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.servlet.ModelAndView;
 
 public class HomeControllerTest {
+
+    private static final String SERVER_TIME = "serverTime";
 
     private static final String PATH = "/";
 
@@ -60,6 +63,7 @@ public class HomeControllerTest {
 
     @Test
     public void homeTest() throws Exception {
+	// note: we don't call the controller method manually here!
 	this.mockMvc.perform(get(HomeControllerTest.PATH)).andExpect(
 		status().isOk());
 
@@ -68,6 +72,7 @@ public class HomeControllerTest {
 
     @Test
     public void homeAssertMavTest() throws Exception {
+	// note: we don't call the controller method manually here!
 	MvcResult mvcResult = this.mockMvc
 		.perform(get(HomeControllerTest.PATH)).andReturn();
 
@@ -79,5 +84,9 @@ public class HomeControllerTest {
 	assertThat(modelAndView, notNullValue());
 	assertThat(modelAndView.getViewName(), equalTo(HomeControllerTest.HOME));
 	assertThat(modelAndView.getModel().size(), equalTo(1));
+
+	// spring mvc assertions
+	assertModelAttributeValue(modelAndView, HomeControllerTest.SERVER_TIME,
+		HomeControllerTest.EN_RESULT);
     }
 }
