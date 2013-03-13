@@ -24,13 +24,13 @@ Check for yourself [here](http://static.springsource.org/spring/docs/3.2.x/javad
 
 
 ##### Assertions
-We have several options for asserting, either the manually asserting `response` and/or the `ModelAndView` object, or using the springframework api.
+We have several options for asserting, either manually asserting the `response` result and/or the `ModelAndView` object, or using the springframework api.
 
-For asserting the result manually, I would prefer asserting the `ModelAndView`, instead of the `response` object.
+For asserting the result manually, I would prefer asserting the `ModelAndView`, instead of the `response` result.
 
-I think asserting the response object would only be realistic if our controllers are json/xml web service endpoints. I don't feel like asserting html markup...
+I think asserting the `response` result would only be realistic if our controllers are json/xml web service endpoints. I don't feel like asserting html markup...
 
-Asserting the `response` rendering result is also not supported if the rendering technology is `jsp` (not running in a servlet container). Freemarker, Velocity, Xslt, etc, is supported. Another reason not to use `jsp`?
+Asserting the `response` result is also not supported if the rendering technology is `jsp` (not running in a servlet container). Freemarker, Velocity, Xslt, etc, is supported. Another reason not to use `jsp`?
 
 ##### Fluent api
 Api that looks like a `builder` pattern.
