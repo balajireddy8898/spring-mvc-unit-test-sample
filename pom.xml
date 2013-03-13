@@ -32,7 +32,6 @@
 
 		<mvn-jetty-version>8.1.9.v20130131</mvn-jetty-version>
 		<mvn-jboss-version>7.4.Final</mvn-jboss-version>
-		<mvn-tomcat-version>2.1</mvn-tomcat-version>
 	</properties>
 
 	<scm>
@@ -197,11 +196,6 @@
 				<groupId>org.jboss.as.plugins</groupId>
 				<artifactId>jboss-as-maven-plugin</artifactId>
 				<version>${mvn-jboss-version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>${mvn-tomcat-version}</version>
 			</plugin>
 		</plugins>
 	</build>
