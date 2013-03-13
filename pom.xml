@@ -29,7 +29,9 @@
 
 		<mvn-compiler-version>3.0</mvn-compiler-version>
 		<mvn-war-version>2.3</mvn-war-version>
+
 		<mvn-jetty-version>8.1.9.v20130131</mvn-jetty-version>
+		<mvn-jboss-version>7.0.2.Final</mvn-jboss-version>
 	</properties>
 
 	<scm>
@@ -189,6 +191,11 @@
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>${mvn-jetty-version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>${mvn-jboss-version}</version>
 			</plugin>
 		</plugins>
 	</build>
