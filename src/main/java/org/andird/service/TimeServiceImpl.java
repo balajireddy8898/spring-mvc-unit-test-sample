@@ -6,7 +6,7 @@ import java.util.Locale;
 
 import org.springframework.stereotype.Service;
 
-@Service(value = "TimeServiceImpl")
+@Service("TimeServiceImpl")
 public class TimeServiceImpl implements TimeService {
 
     @Override
