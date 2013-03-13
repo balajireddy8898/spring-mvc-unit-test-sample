@@ -4,9 +4,11 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import org.springframework.stereotype.Service;
+import javax.inject.Named;
+import javax.inject.Singleton;
 
-@Service("TimeServiceImpl")
+@Singleton
+@Named("TimeServiceImpl")
 public class TimeServiceImpl implements TimeService {
 
     @Override
@@ -17,4 +19,5 @@ public class TimeServiceImpl implements TimeService {
 
 	return dateFormat.format(new Date());
     }
+
 }
