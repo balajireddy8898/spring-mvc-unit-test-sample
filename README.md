@@ -8,6 +8,8 @@ Fluent api, enable testing of controller as `controller`, not just a method, (th
 
 See the full presentation from springsource [here](https://www.youtube.com/watch?v=K6x8LE7Qd1Q "Webinar: Testing Web Applications with Spring 3.2").
 
+Get the sample codes [here](git://github.com/andirdju/spring-mvc-unit-test-sample.git "Sample code on GitHub").
+
 #### Details
 ##### Unit Test (standalone) vs Integration Test
 I would say this is a unit test because we will mock the `collborators`, although we also have the option to not mock the `collaborators` thus doing something like an integration test.
