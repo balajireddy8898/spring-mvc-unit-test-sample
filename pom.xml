@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 	<version>1.0.0-SNAPSHOT</version>
 	<properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.springframework-version>3.2.1.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.7.2</org.aspectj-version>
 
@@ -21,21 +21,22 @@
 		<javax-jstl-version>1.2</javax-jstl-version>
 
 		<junit-version>4.11</junit-version>
-        <mockitoVersion>1.9.5</mockitoVersion>
-        <hamcrestVersion>1.3</hamcrestVersion>
+		<mockitoVersion>1.9.5</mockitoVersion>
+		<hamcrestVersion>1.3</hamcrestVersion>
 
 		<source-version>1.6</source-version>
 		<target-version>1.6</target-version>
 
 		<mvn-compiler-version>3.0</mvn-compiler-version>
 		<mvn-war-version>2.3</mvn-war-version>
+		<mvn-jetty-version>8.1.9.v20130131</mvn-jetty-version>
 	</properties>
 
-    <scm>
-        <connection>scm:git://github.com/andirdju/spring-mvc-unit-test-sample.git</connection>
-        <developerConnection>scm:git@github.com:andirdju/spring-mvc-unit-test-sample.git</developerConnection>
-        <url>https://github.com/andirdju/spring-mvc-unit-test-sample</url>
-    </scm>
+	<scm>
+		<connection>scm:git://github.com/andirdju/spring-mvc-unit-test-sample.git</connection>
+		<developerConnection>scm:git@github.com:andirdju/spring-mvc-unit-test-sample.git</developerConnection>
+		<url>https://github.com/andirdju/spring-mvc-unit-test-sample</url>
+	</scm>
 
 	<dependencies>
 		<!-- Spring -->
@@ -48,7 +49,7 @@
 				<exclusion>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
-				 </exclusion>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -67,7 +68,7 @@
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
-		</dependency>	
+		</dependency>
 
 		<!-- Logging -->
 		<dependency>
@@ -145,39 +146,44 @@
 			<artifactId>junit</artifactId>
 			<version>${junit-version}</version>
 			<scope>test</scope>
-		</dependency>        
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>${mockitoVersion}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <version>${hamcrestVersion}</version>
-            <scope>test</scope>
-        </dependency>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>${mockitoVersion}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-library</artifactId>
+			<version>${hamcrestVersion}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${mvn-compiler-version}</version>
-                <configuration>
-                    <source>${source-version}</source>
-                    <target>${target-version}</target>
-                    <compilerArgument>-Xlint:all</compilerArgument>
-                    <showWarnings>true</showWarnings>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>${mvn-war-version}</version>
-            </plugin>
-        </plugins>
-    </build>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${mvn-compiler-version}</version>
+				<configuration>
+					<source>${source-version}</source>
+					<target>${target-version}</target>
+					<compilerArgument>-Xlint:all</compilerArgument>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${mvn-war-version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>${mvn-jetty-version}</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>
