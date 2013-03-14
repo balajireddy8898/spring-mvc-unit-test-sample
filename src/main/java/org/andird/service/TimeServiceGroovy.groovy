@@ -1,5 +1,7 @@
 package org.andird.service
 
+import groovy.transform.TypeChecked
+
 import java.text.DateFormat
 
 import javax.inject.Named
@@ -8,7 +10,7 @@ import javax.inject.Singleton
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-
+@TypeChecked
 @Singleton
 @Named("TimeServiceGroovy")
 class TimeServiceGroovy implements TimeService {
