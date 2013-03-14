@@ -23,6 +23,6 @@ class TimeServiceGroovy implements TimeService {
 	DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
 		DateFormat.LONG, locale)
 
-	return dateFormat.format(new Date())
+	dateFormat.format(new Date())
     }
 }
