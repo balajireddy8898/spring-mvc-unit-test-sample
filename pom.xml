@@ -33,12 +33,11 @@
 		<target-version>1.6</target-version>
 
 		<mvn-compiler-version>3.0</mvn-compiler-version>
+		<mvn-groovy-compiler-version>2.7.0-01</mvn-groovy-compiler-version>
 		<mvn-war-version>2.3</mvn-war-version>
 
 		<mvn-jetty-version>8.1.10.v20130312</mvn-jetty-version>
 		<mvn-jboss-version>7.4.Final</mvn-jboss-version>
-
-		<mvn-groovy-compiler-version>2.7.0-01</mvn-groovy-compiler-version>
 	</properties>
 
 	<scm>
@@ -226,10 +225,46 @@
 				<artifactId>jboss-as-maven-plugin</artifactId>
 				<version>${mvn-jboss-version}</version>
 				<configuration>
-					<!-- <jbossHome></jbossHome> -->
-					<version>7.1.1.Final</version>
+<!-- 					<jbossHome></jbossHome> -->
+<!-- 					<version></version> -->
 				</configuration>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-compiler-plugin
+										</artifactId>
+										<versionRange>
+											[3.0,)
+										</versionRange>
+										<goals>
+											<goal>testCompile</goal>
+											<goal>compile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>

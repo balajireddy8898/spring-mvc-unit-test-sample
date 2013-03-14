@@ -23,7 +23,7 @@ public class HomeController {
 	    .getLogger(HomeController.class);
 
     @Inject
-    @Named("TimeServiceImpl")
+    @Named("TimeServiceGroovy")
     private TimeService timeService;
 
     /**
