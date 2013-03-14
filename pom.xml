@@ -38,7 +38,8 @@
 		<eclipse-m2e-mapping-version>1.0.0</eclipse-m2e-mapping-version>
 
 		<mvn-jetty-version>8.1.10.v20130312</mvn-jetty-version>
-		<mvn-jboss-version>7.4.Final</mvn-jboss-version>
+		<mvn-jboss-plugin-version>7.4.Final</mvn-jboss-plugin-version>
+		<jboss-version>7.1.1.Final</jboss-version>
 	</properties>
 
 	<scm>
@@ -224,10 +225,10 @@
 			<plugin>
 				<groupId>org.jboss.as.plugins</groupId>
 				<artifactId>jboss-as-maven-plugin</artifactId>
-				<version>${mvn-jboss-version}</version>
+				<version>${mvn-jboss-plugin-version}</version>
 				<configuration>
 <!-- 					<jbossHome></jbossHome> -->
-<!-- 					<version></version> -->
+					<version>${jboss-version}</version>
 				</configuration>
 			</plugin>
 		</plugins>
