@@ -35,6 +35,7 @@
 		<mvn-compiler-version>3.0</mvn-compiler-version>
 		<mvn-groovy-compiler-version>2.7.0-01</mvn-groovy-compiler-version>
 		<mvn-war-version>2.3</mvn-war-version>
+		<eclipse-m2e-mapping-version>1.0.0</eclipse-m2e-mapping-version>
 
 		<mvn-jetty-version>8.1.10.v20130312</mvn-jetty-version>
 		<mvn-jboss-version>7.4.Final</mvn-jboss-version>
@@ -236,7 +237,7 @@
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
+					<version>${eclipse-m2e-mapping-version}</version>
 					<configuration>
 						<lifecycleMappingMetadata>
 							<pluginExecutions>
@@ -249,7 +250,7 @@
 											maven-compiler-plugin
 										</artifactId>
 										<versionRange>
-											[3.0,)
+											[${mvn-compiler-version},)
 										</versionRange>
 										<goals>
 											<goal>testCompile</goal>
