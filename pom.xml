@@ -9,7 +9,12 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<org.springframework-version>3.2.1.RELEASE</org.springframework-version>
+
+		<org.springframework-version>3.2.2.RELEASE</org.springframework-version>
+
+		<mvn-groovy-batch-version>2.0.6-01</mvn-groovy-batch-version>
+		<groovy-version>2.0.6</groovy-version>
+
 		<org.aspectj-version>1.7.2</org.aspectj-version>
 
 		<org.slf4j-version>1.7.2</org.slf4j-version>
@@ -30,8 +35,10 @@
 		<mvn-compiler-version>3.0</mvn-compiler-version>
 		<mvn-war-version>2.3</mvn-war-version>
 
-		<mvn-jetty-version>8.1.9.v20130131</mvn-jetty-version>
+		<mvn-jetty-version>8.1.10.v20130312</mvn-jetty-version>
 		<mvn-jboss-version>7.4.Final</mvn-jboss-version>
+
+		<mvn-groovy-compiler-version>2.7.0-01</mvn-groovy-compiler-version>
 	</properties>
 
 	<scm>
@@ -41,6 +48,13 @@
 	</scm>
 
 	<dependencies>
+		<!-- Lang -->
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>${groovy-version}</version>
+		</dependency>
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -175,12 +189,27 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${mvn-compiler-version}</version>
 				<configuration>
+					<compilerId>groovy-eclipse-compiler</compilerId>
+					<!-- set verbose to be true if you want lots of uninteresting messages -->
+					<!-- <verbose>true</verbose> -->
 					<source>${source-version}</source>
 					<target>${target-version}</target>
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.groovy</groupId>
+						<artifactId>groovy-eclipse-compiler</artifactId>
+						<version>${mvn-groovy-compiler-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.codehaus.groovy</groupId>
+						<artifactId>groovy-eclipse-batch</artifactId>
+						<version>${mvn-groovy-batch-version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -196,6 +225,10 @@
 				<groupId>org.jboss.as.plugins</groupId>
 				<artifactId>jboss-as-maven-plugin</artifactId>
 				<version>${mvn-jboss-version}</version>
+				<configuration>
+					<!-- <jbossHome></jbossHome> -->
+					<version>7.1.1.Final</version>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
