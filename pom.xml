@@ -32,6 +32,8 @@
 		<source-version>1.6</source-version>
 		<target-version>1.6</target-version>
 
+		<mvn-checkstyle-version>2.10</mvn-checkstyle-version>
+		<mvn-jxr-plugin>2.3</mvn-jxr-plugin>
 		<mvn-compiler-version>3.0</mvn-compiler-version>
 		<mvn-groovy-compiler-version>2.7.0-01</mvn-groovy-compiler-version>
 		<mvn-war-version>2.3</mvn-war-version>
@@ -43,7 +45,20 @@
 
 		<!-- work around for log manager not set problem for old jboss 7 -->
 		<downloaded-jboss-home-dir>target/jboss-as-run/jboss-as-${jboss-version}</downloaded-jboss-home-dir>
-		<jvm-args-workaround-for-log-manager>-Xms64m -Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Dorg.jboss.resolver.warning=true -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Djboss.modules.system.pkgs=org.jboss.byteman,org.jboss.logmanager -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Xbootclasspath/p:${downloaded-jboss-home-dir}/modules/org/jboss/logmanager/main/jboss-logmanager-1.2.0.GA.jar -Xbootclasspath/p:${downloaded-jboss-home-dir}/modules/org/jboss/logmanager/log4j/main/jboss-logmanager-log4j-1.0.0.GA.jar -Xbootclasspath/p:${downloaded-jboss-home-dir}/modules/org/apache/log4j/main/log4j-1.2.16.jar</jvm-args-workaround-for-log-manager>
+		<jvm-args-workaround-for-log-manager>
+			-Xms64m
+			-Xmx512m
+			-XX:MaxPermSize=256m
+			-Djava.net.preferIPv4Stack=true
+			-Dorg.jboss.resolver.warning=true
+			-Dsun.rmi.dgc.client.gcInterval=3600000
+			-Dsun.rmi.dgc.server.gcInterval=3600000
+			-Djboss.modules.system.pkgs=org.jboss.byteman,org.jboss.logmanager
+			-Djava.util.logging.manager=org.jboss.logmanager.LogManager
+			-Xbootclasspath/p:${downloaded-jboss-home-dir}/modules/org/jboss/logmanager/main/jboss-logmanager-1.2.0.GA.jar
+			-Xbootclasspath/p:${downloaded-jboss-home-dir}/modules/org/jboss/logmanager/log4j/main/jboss-logmanager-log4j-1.0.0.GA.jar
+			-Xbootclasspath/p:${downloaded-jboss-home-dir}/modules/org/apache/log4j/main/log4j-1.2.16.jar
+		</jvm-args-workaround-for-log-manager>
 	</properties>
 
 	<scm>
@@ -191,6 +206,26 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${mvn-checkstyle-version}</version>
+				<configuration>
+					<configLocation>checkstyle.xml</configLocation>
+					<consoleOutput>true</consoleOutput>
+					<failsOnError>true</failsOnError>
+					<useFile />
+				</configuration>
+				<executions>
+					<execution>
+						<id>check-style</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>checkstyle</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${mvn-compiler-version}</version>
 				<configuration>
@@ -239,7 +274,8 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -267,6 +303,25 @@
 										<ignore></ignore>
 									</action>
 								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-checkstyle-plugin
+										</artifactId>
+										<versionRange>
+											[${version.checkstyle.plugin},)
+										</versionRange>
+										<goals>
+											<goal>checkstyle</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
@@ -274,4 +329,13 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>${mvn-jxr-plugin}</version>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>

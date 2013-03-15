@@ -14,18 +14,18 @@ import org.slf4j.LoggerFactory;
 @Named("TimeServiceImpl")
 public class TimeServiceImpl implements TimeService {
 
-    private static final Logger logger = LoggerFactory
-	    .getLogger(TimeServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(TimeServiceImpl.class);
 
     @Override
-    public String getCurrentTime(Locale locale) {
-	TimeServiceImpl.logger.info("getting current time..");
+    public final String getCurrentTime(final Locale locale) {
+        TimeServiceImpl.LOGGER.info("getting current time..");
 
-	// Date format is not thread-safe
-	DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-		DateFormat.LONG, locale);
+        // Date format is not thread-safe
+        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+                DateFormat.LONG, locale);
 
-	return dateFormat.format(new Date());
+        return dateFormat.format(new Date());
     }
 
 }
