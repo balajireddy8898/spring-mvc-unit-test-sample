@@ -40,6 +40,10 @@
 		<mvn-jetty-version>8.1.10.v20130312</mvn-jetty-version>
 		<mvn-jboss-plugin-version>7.4.Final</mvn-jboss-plugin-version>
 		<jboss-version>7.1.1.Final</jboss-version>
+
+		<!-- work around for log manager not set problem for old jboss 7 -->
+		<downloaded-jboss-home-dir>target/jboss-as-run/jboss-as-${jboss-version}</downloaded-jboss-home-dir>
+		<jvm-args-workaround-for-log-manager>-Xms64m -Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Dorg.jboss.resolver.warning=true -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Djboss.modules.system.pkgs=org.jboss.byteman,org.jboss.logmanager -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Xbootclasspath/p:${downloaded-jboss-home-dir}/modules/org/jboss/logmanager/main/jboss-logmanager-1.2.0.GA.jar -Xbootclasspath/p:${downloaded-jboss-home-dir}/modules/org/jboss/logmanager/log4j/main/jboss-logmanager-log4j-1.0.0.GA.jar -Xbootclasspath/p:${downloaded-jboss-home-dir}/modules/org/apache/log4j/main/log4j-1.2.16.jar</jvm-args-workaround-for-log-manager>
 	</properties>
 
 	<scm>
@@ -227,8 +231,9 @@
 				<artifactId>jboss-as-maven-plugin</artifactId>
 				<version>${mvn-jboss-plugin-version}</version>
 				<configuration>
-<!-- 					<jbossHome></jbossHome> -->
 					<version>${jboss-version}</version>
+					<!-- work around for log manager not set problem on old jboss 7 -->
+					<!-- <jvmArgs>${jvm-args-workaround-for-log-manager}</jvmArgs> -->
 				</configuration>
 			</plugin>
 		</plugins>
