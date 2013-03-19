@@ -44,6 +44,8 @@
 		<mvn-jboss-plugin-version>7.4.Final</mvn-jboss-plugin-version>
 		<jboss-version>7.1.1.Final</jboss-version>
 
+		<webappDirName>webapp.war</webappDirName>
+
 		<!-- work around for log manager not set problem for old jboss 7 -->
 		<downloaded-jboss-home-dir>target/jboss-as-run/jboss-as-${jboss-version}</downloaded-jboss-home-dir>
 		<jvm-args-workaround-for-log-manager>
@@ -227,10 +229,10 @@
 				<configuration>
 					<filesets>
 						<fileset>
-							<directory>src/main/webapp.war/WEB-INF/classes</directory>
+							<directory>src/main/${webappDirName}/WEB-INF/classes</directory>
 						</fileset>
 						<fileset>
-							<directory>src/main/webapp.war/WEB-INF/lib</directory>
+							<directory>src/main/${webappDirName}/WEB-INF/lib</directory>
 						</fileset>
 					</filesets>
 				</configuration>
@@ -267,14 +269,17 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>${mvn-war-version}</version>
 				<configuration>
-					<warSourceDirectory>${basedir}/src/main/webapp.war</warSourceDirectory>
-					<webappDirectory>${basedir}/src/main/webapp.war</webappDirectory>
+					<warSourceDirectory>src/main/${webappDirName}</warSourceDirectory>
+					<webappDirectory>src/main/${webappDirName}</webappDirectory>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>${mvn-jetty-version}</version>
+				<configuration>
+					<webAppSourceDirectory>src/main/${webappDirName}</webAppSourceDirectory>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.jboss.as.plugins</groupId>
