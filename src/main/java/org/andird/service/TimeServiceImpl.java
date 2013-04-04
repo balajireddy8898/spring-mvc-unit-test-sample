@@ -1,14 +1,13 @@
 package org.andird.service;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 @Singleton
 @Named("TimeServiceImpl")

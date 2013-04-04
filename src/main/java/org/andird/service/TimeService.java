@@ -3,7 +3,7 @@ package org.andird.service;
 import java.util.Locale;
 
 /**
- * 
+ *
  */
 public interface TimeService {
 

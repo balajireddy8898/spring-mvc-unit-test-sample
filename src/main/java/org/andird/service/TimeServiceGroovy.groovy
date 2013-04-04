@@ -1,14 +1,12 @@
 package org.andird.service
 
 import groovy.transform.TypeChecked
-
-import java.text.DateFormat
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import javax.inject.Named
 import javax.inject.Singleton
-
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import java.text.DateFormat
 
 @TypeChecked
 @Singleton
@@ -19,12 +17,12 @@ class TimeServiceGroovy implements TimeService {
 
     @Override
     public String getCurrentTime(Locale locale) {
-	TimeServiceGroovy.logger.info("getting current time..")
+        TimeServiceGroovy.logger.info("getting current time..")
 
-	// Date format is not thread-safe
-	DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-		DateFormat.LONG, locale)
+        // Date format is not thread-safe
+        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+                DateFormat.LONG, locale)
 
-	dateFormat.format(new Date())
+        dateFormat.format(new Date())
     }
 }
