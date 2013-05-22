@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.andird</groupId>
 	<artifactId>spring-mvc-unit-test-sample</artifactId>
 	<name>spring-mvc-unit-test-sample</name>
 	<packaging>war</packaging>
-	<version>1.0.0</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -64,8 +65,8 @@
 	</properties>
 
 	<scm>
-		<connection>scm:git:ssh://github.com/andirdju/spring-mvc-unit-test-sample.git</connection>
-		<developerConnection>scm:git:ssh:@github.com:andirdju/spring-mvc-unit-test-sample.git</developerConnection>
+		<connection>scm:git://github.com/andirdju/spring-mvc-unit-test-sample.git</connection>
+		<developerConnection>scm:git@github.com:andirdju/spring-mvc-unit-test-sample.git</developerConnection>
 		<url>https://github.com/andirdju/spring-mvc-unit-test-sample</url>
 	</scm>
 
@@ -319,7 +320,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore />
+										<ignore></ignore>
 									</action>
 								</pluginExecution>
 								<pluginExecution>
@@ -338,7 +339,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore />
+										<ignore></ignore>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
