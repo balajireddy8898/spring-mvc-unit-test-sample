@@ -65,8 +65,8 @@
 	</properties>
 
 	<scm>
-		<connection>scm:git://github.com/andirdju/spring-mvc-unit-test-sample.git</connection>
-		<developerConnection>scm:git@github.com:andirdju/spring-mvc-unit-test-sample.git</developerConnection>
+		<connection>scm:git:git://github.com/andirdju/spring-mvc-unit-test-sample.git</connection>
+		<developerConnection>scm:git:ssh:git@github.com:andirdju/spring-mvc-unit-test-sample.git</developerConnection>
 		<url>https://github.com/andirdju/spring-mvc-unit-test-sample</url>
 	</scm>
 
