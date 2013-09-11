@@ -32,36 +32,119 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<a name="spring-mvc-unit-test-sample" class="anchor" href="#spring-mvc-unit-test-sample"><span class="octicon octicon-link"></span></a>Spring MVC Unit Test Sample</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<h4>
+<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h4>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p>Fluent api, enable testing of controller as <code>controller</code>, not just as a method (think request mapping).</p>
+
+<p>See the full presentation from springsource <a href="https://www.youtube.com/watch?v=K6x8LE7Qd1Q" title="Webinar: Testing Web Applications with Spring 3.2">here</a>.</p>
+
+<p>Get the sample codes (NOT for the springsource presentation) <a href="https://github.com/andirdju/spring-mvc-unit-test-sample" title="GitHub - andirdju - spring-mvc-unit-test-sample">here</a>.</p>
+
+<h4>
+<a name="details" class="anchor" href="#details"><span class="octicon octicon-link"></span></a>Details</h4>
+
+<h5>
+<a name="unit-test-standalone-vs-integration-test" class="anchor" href="#unit-test-standalone-vs-integration-test"><span class="octicon octicon-link"></span></a>Unit Test (standalone) vs Integration Test</h5>
+
+<p>I would say this is a unit test because we will mock the <code>collborators</code>, although we also have the option to not mock the <code>collaborators</code> thus doing something like an integration test.</p>
+
+<p>In the spirit of unit-testing, I personally prefer to do standalone testing on the controller, by mocking the <code>collaborators</code> and testing one controller at a time.</p>
+
+<h5>
+<a name="dispatcherservlet-runtime-so-we-can-test-request-mapping" class="anchor" href="#dispatcherservlet-runtime-so-we-can-test-request-mapping"><span class="octicon octicon-link"></span></a>DispatcherServlet runtime (so we can test request mapping)</h5>
+
+<p>It will handle the creation of <code>DispatcherServlet</code> runtime for the test, so we can also test the mvc wiring, not just the inner workings of the methods.</p>
+
+<p>We won't call the controller methods directly. Instead we will create a mock request and pass it to the provided <a href="http://static.springsource.org/spring/docs/3.2.x/javadoc-api/org/springframework/test/web/servlet/MockMvc.html" title="MockMvc">mvc test infrastructure</a>. </p>
+
+<h5>
+<a name="mockmvc-and-other-usefull-mocks" class="anchor" href="#mockmvc-and-other-usefull-mocks"><span class="octicon octicon-link"></span></a>MockMvc and other usefull mocks</h5>
+
+<p>Classes in <code>org.springframework.test.web.servlet.*</code>
+Check for yourself <a href="http://static.springsource.org/spring/docs/3.2.x/javadoc-api/org/springframework/test/web/servlet/package-summary.html" title="Contains server-side support for testing Spring MVC applications">here</a>.</p>
+
+<h5>
+<a name="assertions" class="anchor" href="#assertions"><span class="octicon octicon-link"></span></a>Assertions</h5>
+
+<p>We have several options for asserting, either manually asserting the <code>response</code> result and/or the <code>ModelAndView</code> object, or using the springframework api.</p>
+
+<p>For asserting the result manually, I would prefer asserting the <code>ModelAndView</code>, instead of the <code>response</code> result.</p>
+
+<p>I think asserting the <code>response</code> result would only be realistic if our controllers are json/xml web service endpoints. I don't feel like asserting html markup...</p>
+
+<p>Asserting the <code>response</code> result is also not supported if the rendering technology is <code>jsp</code> (not running in a servlet container). Freemarker, Velocity, Xslt, etc, is supported. Another reason not to use <code>jsp</code>?</p>
+
+<h5>
+<a name="fluent-api" class="anchor" href="#fluent-api"><span class="octicon octicon-link"></span></a>Fluent api</h5>
+
+<p>Api that looks like a <code>builder</code> pattern.</p>
+
+<h5>
+<a name="sample-from-springsource-presentation-and-ref-docs" class="anchor" href="#sample-from-springsource-presentation-and-ref-docs"><span class="octicon octicon-link"></span></a>Sample from springsource presentation and ref docs</h5>
+
+<p>Creating Standalone Unit Test</p>
+
+<pre><code>...
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+...
+@InjectMocks
+private HomeController homeController;
+...
+@Mock
+private TimeService timeService;
+...
+@Before
+public void before() {
+    ...
+    this.mockMvc = standaloneSetup(this.homeController).build();
+}
+...
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Fluent Api</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<pre><code>...
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+...
+@Test
+public void homeTest() throws Exception {
+    // note: we don't call the controller method manually here!
+    this.mockMvc.perform(get(HomeControllerTest.PATH)).andExpect(
+        status().isOk());
+    ...
+}
+...
+</code></pre>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>Access to underlying request, response, ModelAndView object</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<pre><code>...
+import static org.springframework.test.web.ModelAndViewAssert.assertModelAttributeValue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+...
+@Test
+public void homeAssertMavTest() throws Exception {
+    // note: we don't call the controller method manually here!
+    MvcResult mvcResult = this.mockMvc.perform(get(HomeControllerTest.PATH)).andReturn();
+    ...
+    ModelAndView modelAndView = mvcResult.getModelAndView();
+    MockHttpServletRequest request = mvcResult.getRequest();
+    MockHttpServletResponse response = mvcResult.getResponse();
+    ...    
+    // assertions
+    ...
+    // spring mvc ModelAndView specific assertion
+    assertModelAttributeValue(modelAndView, HomeControllerTest.SERVER_TIME,
+        HomeControllerTest.EN_RESULT);
+    ...
+}
+...
+</code></pre>
       </section>
     </div>
 
