@@ -1,4 +1,0 @@
-/**
- *
- */
-package org.andird.service;
