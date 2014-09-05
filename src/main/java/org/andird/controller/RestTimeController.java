@@ -6,23 +6,23 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.andird.service.TimeService;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Handles requests for the application home page.
  */
-@Controller
-public class HomeController {
+@RestController
+public class RestTimeController {
 
   /**
    *
    */
-  private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(RestTimeController.class);
 
   /**
    *
@@ -38,13 +38,11 @@ public class HomeController {
    * @param model
    * @return
    */
-  @RequestMapping(value = "/", method = RequestMethod.GET)
-  public final String home(final Locale locale, final Model model) {
-    HomeController.LOGGER.info("Welcome home! The client locale is {}.", locale);
+  @RequestMapping(value = UrlMapping.API_TIME, method = RequestMethod.GET)
+  public final DateTime time(final Locale locale) {
+    RestTimeController.LOGGER.info("Welcome home! The client locale is {}.", locale);
 
-    model.addAttribute("serverTime", this.timeService.getCurrentTime(locale));
-
-    return "home";
+    return this.timeService.getCurrentTime();
   }
 
 }

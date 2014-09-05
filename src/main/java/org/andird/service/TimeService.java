@@ -1,6 +1,6 @@
 package org.andird.service;
 
-import java.util.Locale;
+import org.joda.time.DateTime;
 
 /**
  *
@@ -9,7 +9,7 @@ public interface TimeService {
 
   /**
    * @param locale
-   * @return current time in LONG format according to specified Locale.
+   * @return current time with specified Locale.
    */
-  String getCurrentTime(final Locale locale);
+  DateTime getCurrentTime();
 }
