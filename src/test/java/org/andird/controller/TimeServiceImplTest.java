@@ -15,24 +15,24 @@ import org.mockito.InjectMocks;
 
 public class TimeServiceImplTest {
 
-	private static final Locale FRANCE = Locale.FRANCE;
+  private static final Locale FRANCE = Locale.FRANCE;
 
-	@InjectMocks
-	private TimeServiceImpl serviceImpl;
+  @InjectMocks
+  private TimeServiceImpl serviceImpl;
 
-	@Test
-	public void getCurrentTimeTest() {
-		MyTime myTime = this.serviceImpl.getCurrentTime(FRANCE);
+  @Before
+  public void before() {
+    initMocks(this);
+  }
 
-		assertThat(myTime, notNullValue());
+  @Test
+  public void getCurrentTimeTest() {
+    MyTime myTime = this.serviceImpl.getCurrentTime(TimeServiceImplTest.FRANCE);
 
-		assertThat(myTime.getLocale(), equalTo(FRANCE.getDisplayName()));
-		
-		assertThat(myTime.getTimeStr(), notNullValue());
-	}
+    assertThat(myTime, notNullValue());
 
-	@Before
-	public void before() {
-		initMocks(this);
-	}
+    assertThat(myTime.getLocale(), equalTo(TimeServiceImplTest.FRANCE.getDisplayName()));
+
+    assertThat(myTime.getTimeStr(), notNullValue());
+  }
 }

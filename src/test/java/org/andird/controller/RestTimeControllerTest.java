@@ -8,6 +8,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 import java.util.Locale;
@@ -61,14 +62,14 @@ public class RestTimeControllerTest {
     MvcResult mvcResult =
         this.mockMvc
             .perform(
-            get(UrlMapping.API_TIME).accept(MediaType.APPLICATION_JSON).locale(
-                RestTimeControllerTest.LOCALE_SAMPLE))
+                get(UrlMapping.API_TIME).accept(MediaType.APPLICATION_JSON).locale(
+                    RestTimeControllerTest.LOCALE_SAMPLE))
             .andExpect(status().isOk())
             .andExpect(
                 jsonPath("$.timeStr", equalTo(RestTimeControllerTest.DATE_TIME_SAMPLE.getTimeStr())))
-                    .andExpect(
-                        jsonPath("$.locale", equalTo(RestTimeControllerTest.DATE_TIME_SAMPLE.getLocale())))
-                        .andReturn();
+            .andExpect(
+                jsonPath("$.locale", equalTo(RestTimeControllerTest.DATE_TIME_SAMPLE.getLocale())))
+            .andReturn();
 
     verify(this.timeService).getCurrentTime(RestTimeControllerTest.LOCALE_SAMPLE);
 
@@ -80,9 +81,15 @@ public class RestTimeControllerTest {
     // note: we don't call the controller method manually here!
     MvcResult mvcResult =
         this.mockMvc
-        .perform(
-            get(UrlMapping.API_TIME).accept(MediaType.APPLICATION_XML).locale(
-                RestTimeControllerTest.LOCALE_SAMPLE)).andExpect(status().isOk()).andReturn();
+            .perform(
+                get(UrlMapping.API_TIME).accept(MediaType.APPLICATION_XML).locale(
+                    RestTimeControllerTest.LOCALE_SAMPLE))
+            .andExpect(status().isOk())
+            .andExpect(
+                xpath("/myTime/locale").string(RestTimeControllerTest.DATE_TIME_SAMPLE.getLocale()))
+            .andExpect(
+                xpath("/myTime/timeStr").string(
+                    RestTimeControllerTest.DATE_TIME_SAMPLE.getTimeStr())).andReturn();
 
     verify(this.timeService).getCurrentTime(RestTimeControllerTest.LOCALE_SAMPLE);
 
