@@ -42,7 +42,8 @@ public class RestTimeController {
   public final MyTime time(final Locale locale) {
     RestTimeController.LOGGER.info("Welcome home! The client locale is {}.", locale);
 
-    return this.timeService.getCurrentTime(locale);
+    MyTime myTime = this.timeService.getCurrentTime(locale);
+	return myTime;
   }
 
 }

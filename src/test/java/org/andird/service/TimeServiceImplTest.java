@@ -1,4 +1,4 @@
-package org.andird.controller;
+package org.andird.service;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -33,6 +33,6 @@ public class TimeServiceImplTest {
 
     assertThat(myTime.getLocale(), equalTo(TimeServiceImplTest.FRANCE.getDisplayName()));
 
-    assertThat(myTime.getTimeStr(), notNullValue());
+    assertThat(myTime.getTimeString(), notNullValue());
   }
 }

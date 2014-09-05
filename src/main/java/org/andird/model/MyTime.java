@@ -12,7 +12,7 @@ public class MyTime implements Serializable {
 
   private static final long serialVersionUID = 5105187799831294875L;
 
-  private String timeStr;
+  private String timeString;
   private String locale;
 
   public MyTime() {
@@ -20,7 +20,7 @@ public class MyTime implements Serializable {
   }
 
   public MyTime(DateTime dateTime, Locale locale) {
-    this.timeStr = dateTime.toCalendar(locale).getTime().toString();
+    this.timeString = dateTime.toCalendar(locale).getTime().toString();
     this.locale = locale.getDisplayName();
   }
 
@@ -43,11 +43,11 @@ public class MyTime implements Serializable {
     } else if (!this.locale.equals(other.locale)) {
       return false;
     }
-    if (this.timeStr == null) {
-      if (other.timeStr != null) {
+    if (this.timeString == null) {
+      if (other.timeString != null) {
         return false;
       }
-    } else if (!this.timeStr.equals(other.timeStr)) {
+    } else if (!this.timeString.equals(other.timeString)) {
       return false;
     }
     return true;
@@ -57,8 +57,8 @@ public class MyTime implements Serializable {
     return this.locale;
   }
 
-  public String getTimeStr() {
-    return this.timeStr;
+  public String getTimeString() {
+    return this.timeString;
   }
 
   @Override
@@ -66,7 +66,7 @@ public class MyTime implements Serializable {
     final int prime = 31;
     int result = 1;
     result = (prime * result) + ((this.locale == null) ? 0 : this.locale.hashCode());
-    result = (prime * result) + ((this.timeStr == null) ? 0 : this.timeStr.hashCode());
+    result = (prime * result) + ((this.timeString == null) ? 0 : this.timeString.hashCode());
     return result;
   }
 
@@ -74,13 +74,13 @@ public class MyTime implements Serializable {
     this.locale = locale;
   }
 
-  public void setTimeStr(String timeStr) {
-    this.timeStr = timeStr;
+  public void setTimeString(String timeStr) {
+    this.timeString = timeStr;
   }
 
   @Override
   public String toString() {
-    return String.format("MyTime [timeStr=%s, locale=%s, toString()=%s]", this.timeStr,
+    return String.format("MyTime [timeStr=%s, locale=%s, toString()=%s]", this.timeString,
         this.locale, super.toString());
   }
 

@@ -66,9 +66,9 @@ public class RestTimeControllerTest {
                     RestTimeControllerTest.LOCALE_SAMPLE))
             .andExpect(status().isOk())
             .andExpect(
-                jsonPath("$.timeStr", equalTo(RestTimeControllerTest.DATE_TIME_SAMPLE.getTimeStr())))
+                jsonPath("$.timeString", equalTo(RestTimeControllerTest.DATE_TIME_SAMPLE.getTimeString())))
             .andExpect(
-                jsonPath("$.locale", equalTo(RestTimeControllerTest.DATE_TIME_SAMPLE.getLocale())))
+                jsonPath("$.locale", equalTo(RestTimeControllerTest.LOCALE_SAMPLE.getDisplayName())))
             .andReturn();
 
     verify(this.timeService).getCurrentTime(RestTimeControllerTest.LOCALE_SAMPLE);
@@ -86,10 +86,10 @@ public class RestTimeControllerTest {
                     RestTimeControllerTest.LOCALE_SAMPLE))
             .andExpect(status().isOk())
             .andExpect(
-                xpath("/myTime/locale").string(RestTimeControllerTest.DATE_TIME_SAMPLE.getLocale()))
+                xpath("/myTime/locale").string(RestTimeControllerTest.LOCALE_SAMPLE.getDisplayName()))
             .andExpect(
-                xpath("/myTime/timeStr").string(
-                    RestTimeControllerTest.DATE_TIME_SAMPLE.getTimeStr())).andReturn();
+                xpath("/myTime/timeString").string(
+                    RestTimeControllerTest.DATE_TIME_SAMPLE.getTimeString())).andReturn();
 
     verify(this.timeService).getCurrentTime(RestTimeControllerTest.LOCALE_SAMPLE);
 
