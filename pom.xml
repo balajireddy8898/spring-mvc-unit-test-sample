@@ -18,6 +18,7 @@
 		<logback-version>1.1.2</logback-version>
 		<jackson-version>2.4.2</jackson-version>
 		<woodstox-version>4.1.4</woodstox-version>
+		<json-path-version>0.9.1</json-path-version>
 
 		<mvn-compiler-version>3.1</mvn-compiler-version>
 		<mvn-war-version>2.4</mvn-war-version>
@@ -135,6 +136,18 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>${json-path-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path-assert</artifactId>
+			<version>${json-path-version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

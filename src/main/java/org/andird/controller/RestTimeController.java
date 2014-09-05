@@ -5,8 +5,8 @@ import java.util.Locale;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.andird.model.MyTime;
 import org.andird.service.TimeService;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,10 +39,10 @@ public class RestTimeController {
    * @return
    */
   @RequestMapping(value = UrlMapping.API_TIME, method = RequestMethod.GET)
-  public final DateTime time(final Locale locale) {
+  public final MyTime time(final Locale locale) {
     RestTimeController.LOGGER.info("Welcome home! The client locale is {}.", locale);
 
-    return this.timeService.getCurrentTime();
+    return this.timeService.getCurrentTime(locale);
   }
 
 }

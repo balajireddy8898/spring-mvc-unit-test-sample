@@ -1,6 +1,8 @@
 package org.andird.service;
 
-import org.joda.time.DateTime;
+import java.util.Locale;
+
+import org.andird.model.MyTime;
 
 /**
  *
@@ -11,5 +13,5 @@ public interface TimeService {
    * @param locale
    * @return current time with specified Locale.
    */
-  DateTime getCurrentTime();
+  MyTime getCurrentTime(Locale locale);
 }
