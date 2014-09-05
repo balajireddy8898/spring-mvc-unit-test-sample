@@ -1,5 +1,0 @@
-/**
- *
- */
-package org.andird.controller;
-
