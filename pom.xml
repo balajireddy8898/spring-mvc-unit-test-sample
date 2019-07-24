@@ -10,6 +10,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
+ <sonar.host.url>http://localhost:9000</sonar.host.url>
 
 		<javax-servlet-version>3.1.0</javax-servlet-version>
 		<javax-inject-version>1</javax-inject-version>
@@ -175,6 +176,15 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
+			<plugin>
+
+                    <groupId>org.codehaus.sonar</groupId>
+
+                    <artifactId>sonar-maven-plugin</artifactId>
+
+                    <version>5.3</version>
+
+                </plugin>
 		</plugins>
 	</build>
 </project>
