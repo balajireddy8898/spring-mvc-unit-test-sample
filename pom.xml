@@ -10,6 +10,16 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
+		<sonar.sources>src/main</sonar.sources>
+        <sonar.tests>src/test</sonar.tests>
+		<sonar.sources>src/main</sonar.sources>
+		<sonar.tests>src/test</sonar.tests>
+		
+		<!-- Sonar-JaCoCo properties -->
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
+		<sonar.language>java</sonar.language>
  <sonar.host.url>http://localhost:9000</sonar.host.url>
 
 		<javax-servlet-version>3.1.0</javax-servlet-version>
@@ -192,6 +202,11 @@
             <artifactId>jacoco-maven-plugin</artifactId>
 
             <version>0.8.0</version>
+				
+				<configuration>
+					<destFile>${sonar.jacoco.reportPaths}</destFile>
+					<append>true</append>
+				</configuration>
 
             <executions>
 
