@@ -13,7 +13,7 @@ pipeline {
     }
     stage('sonarqube') {
       steps {
-        bat 'sonar-runner'
+        bat 'mvn sonar:sonar'
       }
     }
   }
