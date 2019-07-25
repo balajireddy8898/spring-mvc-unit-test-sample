@@ -9,7 +9,18 @@
 	<version>1.2.0-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
+        <java.version>1.8</java.version>
+		<sonar.sources>src/main</sonar.sources>
+        <sonar.tests>src/test</sonar.tests>
+		<sonar.sources>src/main</sonar.sources>
+		<sonar.tests>src/test</sonar.tests>
+		<!-- Below property indicates the pattern of the test suite -->
+		<runSuite>**/*ServiceTest.class</runSuite>
+		<!-- Sonar-JaCoCo properties -->
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
+		<sonar.language>java</sonar.language>
 
 		<javax-servlet-version>3.1.0</javax-servlet-version>
 		<javax-inject-version>1</javax-inject-version>
